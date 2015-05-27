@@ -2,12 +2,12 @@ game.PlayerEntity = me.Entity.extend({
    init: function(x, y, settings){
        this._super(me.Entity, 'init', [x, y, {
                image: "player-1",
-               width: 64,
-               height: 64,
+               width: 100,
+               height: 100,
                spritewidth: "100",
                spriteheight: "100",
                getShape: function(){
-                   return(new me.Rect(0, 0, 64, 64)).toPolygon();
+                   return(new me.Rect(0, 0, 100, 100)).toPolygon();
                }
        }]);
    
@@ -29,10 +29,12 @@ game.PlayerEntity = me.Entity.extend({
           this.body.vel.x = 0;
       }
       if(this.body.vel.x !== 0){
-      if(!this.renderable.isCurrentAnimation("walk")){
-          this.renderable.setCurrentAnimation("walk");
-      }
-  }
+            if (!this.renderable.isCurrentAnimation("walk")) {
+                this.renderable.setCurrentAnimation("walk");
+            }
+        }else{
+            this.renderable.setCurrentAnimation("idle");
+        }
       
       
       
